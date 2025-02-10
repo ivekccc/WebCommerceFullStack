@@ -6,11 +6,12 @@ import jakarta.persistence.*;
 @Table(name = "productCategory")
 public class ProductCategory {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String categoryName;
     private String categoryDescription;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "superiorCategory")
     private ProductCategory superiorCategory;
 

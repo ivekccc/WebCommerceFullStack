@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 @Table(name = "product")
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String productName;
