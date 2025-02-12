@@ -1,6 +1,7 @@
 package com.example.WebCommerce.controller;
 
 import com.example.WebCommerce.model.product.Product;
+import com.example.WebCommerce.model.productCategory.ProductCategory;
 import com.example.WebCommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,20 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+
+    //PRODUCT CLASS CONTROLLER
+
     @GetMapping("/getAllProducts")
-    public List<Product> getData() {
+    public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
+
+    //PRODUCT CATEGORY CLASS CONTROLLER
+
+    @GetMapping("/getAllCategories")
+    public List<ProductCategory> getAllProductCategories(){
+        return productService.getAllCategoryProducts();
+    }
+
+
 }

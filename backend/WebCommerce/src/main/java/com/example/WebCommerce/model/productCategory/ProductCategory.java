@@ -14,8 +14,19 @@ public class ProductCategory {
 
     private String categoryName;
     private String categoryDescription;
+    private String categoryImgSrc;
     @ManyToOne
     @JoinColumn(name = "superiorCategory")
     private ProductCategory superiorCategory;
 
+    @Override
+    public String toString() {
+        return "ProductCategory{" +
+                "id=" + id +
+                ", categoryName='" + categoryName + '\'' +
+                ", categoryDescription='" + categoryDescription + '\'' +
+                ", categoryImgSrc='" + categoryImgSrc + '\'' +
+                ", superiorCategory=" + superiorCategory +
+                '}';
+    }
 }
