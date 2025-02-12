@@ -4,8 +4,8 @@ export class Product{
     productDescription!:string;
     productPrice!:string;
     productAvailableQuantity!:number;
-    productBrand!:any;
-    productCategory!:any;
+    productBrand!:ProductBrand;
+    productCategory!:ProductCategory;
     product_image_url!:string;
 }
 
@@ -13,7 +13,8 @@ export class ProductCategory{
     id!:number;
     categoryName!:string;
     categoryDescription!:string;
-    superiorCategory!:ProductCategory
+    categoryImgSrc!:string;
+    superiorCategory!:ProductCategory|null
 }
 
 export class ProductBrand{
