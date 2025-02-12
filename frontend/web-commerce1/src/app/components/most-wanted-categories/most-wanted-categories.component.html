@@ -1,0 +1,7 @@
+<div class="bg-gray-100 pt-8 px-48 rounded-lg">
+  <div class="bg-gray-200 py-6 rounded-lg">
+    <div class="grid grid-cols-12 mx-auto px-8 gap-16 max-w-screen-lg">
+      <app-most-wanted-categoty-card *ngFor="let category of categories" [category]="category" class="flex col-span-4 flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70"></app-most-wanted-categoty-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="min-w-[200px] bg-gray-800 shadow-xl rounded-lg">
+  <ul class="flex flex-col p-2">
+    <!-- Glavne kategorije -->
+    <li *ngFor="let category of getSuperCategories()"
+        class="group relative px-4 py-2 text-white hover:bg-gray-700 rounded-lg transition-colors"
+        (mouseenter)="onCategoryHover(category)"
+        (mouseleave)="onCategoryHover(null)">
+
+      <div class="flex justify-between items-center">
+        <span>{{ category.categoryName }}</span>
+        <svg *ngIf="hasSubcategories(category)" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </div>
+
+      <!-- Podkategorije - prikazane sa desne strane -->
+      <ul *ngIf="hoveredCategory === category && hasSubcategories(category)"
+          class="absolute left-full top-0 ml-1 min-w-[200px] bg-gray-800 rounded-lg shadow-xl p-2">
+        <li *ngFor="let subcategory of getSubcategories(category)"
+            class="px-4 py-2 text-white hover:bg-gray-700 rounded-lg transition-colors">
+          {{ subcategory.categoryName }}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

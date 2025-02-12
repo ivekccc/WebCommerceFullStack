@@ -1,0 +1,24 @@
+<div
+      >
+        <a
+          [routerLink]="['/']"
+          routerLinkActive="router-link-active"
+          class="flex flex-col h-full"
+        >
+          <img
+            class="w-full h-auto rounded-t-xl"
+            [src]="category.categoryImgSrc"
+            [alt]="category.categoryImgSrc"
+          />
+          <div class="p-4 md:p-5 text-center">
+            <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+              Najprodavanija
+              <br />
+              {{ category.categoryName }}
+            </h3>
+            <p class="mt-1 text-gray-500 dark:text-neutral-400">
+              {{ category.categoryDescription }}
+            </p>
+          </div>
+        </a>
+      </div>
