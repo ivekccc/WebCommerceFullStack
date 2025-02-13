@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from "./components/login/login.component";
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
+import { HomeModule } from './features/home/home.module';
+import { ProductsModule } from './features/products/products.module';
+import { UsersModule } from './features/users/users.module';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,SharedModule,CoreModule,HomeModule,ProductsModule,UsersModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
