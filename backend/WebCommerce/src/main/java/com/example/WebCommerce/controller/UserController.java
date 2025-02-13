@@ -1,6 +1,7 @@
 package com.example.WebCommerce.controller;
 
 
+import com.example.WebCommerce.model.authResponse.AuthResponseDTO;
 import com.example.WebCommerce.model.user.User;
 import com.example.WebCommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody User user){
+    public AuthResponseDTO login(@RequestBody User user){
         return userService.verify(user);
     }
 }

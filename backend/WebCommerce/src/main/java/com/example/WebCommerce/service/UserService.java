@@ -1,5 +1,6 @@
 package com.example.WebCommerce.service;
 
+import com.example.WebCommerce.model.authResponse.AuthResponseDTO;
 import com.example.WebCommerce.model.user.User;
 import com.example.WebCommerce.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +31,15 @@ public class UserService {
     }
 
 
-    public String verify(User user) {
-        Authentication authentication=authMenager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(),user.getPassword()));
+    public AuthResponseDTO verify(User loginUser) {
+        Authentication authentication=authMenager.authenticate(new UsernamePasswordAuthenticationToken(loginUser.getEmail(),loginUser.getPassword()));
 
         if(authentication.isAuthenticated()){
-
-           return jwtService.generateToken(user.getEmail());
+            User user=userRepo.findByEmail(loginUser.getEmail());
+            String token= jwtService.generateToken(user.getEmail());
+            return new AuthResponseDTO(token,user);
 
         }
-        else{
-            return "fail";
-        }
+        throw new RuntimeException("Neuspesna autentifikacija");
     }
 }
