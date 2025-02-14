@@ -5,6 +5,8 @@ import { CoreModule } from './core/core.module';
 import { HomeModule } from './features/home/home.module';
 import { ProductsModule } from './features/products/products.module';
 import { UsersModule } from './features/users/users.module';
+import { HeaderComponent } from "./shared/components/header/header.component";
+import { NavbarComponent } from "./shared/components/navbar/navbar.component";
 
 @Component({
   selector: 'app-root',

@@ -12,7 +12,7 @@ import { MostWantedCategoriesComponent } from "../../../products/components/most
 
 @Component({
   selector: 'app-home',
-  imports: [NavbarComponent, CommonModule, HeaderComponent, MostWantedCategoriesComponent],
+  imports: [CommonModule, MostWantedCategoriesComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

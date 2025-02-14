@@ -1,8 +1,9 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, inject, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductCategory } from '../../model/product';
 import { MainMenuComponent } from '../main-menu/main-menu.component';
+import { ProductService } from '../../services/product/product.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,12 +15,15 @@ export class NavbarComponent implements OnInit {
   isNavbarOpen = false;
   isMobileMenuOpen = false;
   hoveredCategory: ProductCategory | null = null;
-  @Input() categories: ProductCategory[] = [];
+  categories: ProductCategory[] = [];
+  productService=inject(ProductService)
 
   constructor() {}
 
   ngOnInit(): void {
-    // ... (vaš postojeći kod)
+    this.productService.productCategories$.subscribe((categories) => {
+      this.categories = categories;
+    });
   }
 
   toggleNavbar() {
@@ -45,8 +49,6 @@ export class NavbarComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   handleClick(event: MouseEvent): void {
     const target = event.target as HTMLElement;
-
-    // Proveri da li je kliknut element unutar navigacije
     const clickedInsideNavbar = target.closest('.navbar') !== null;
 
     if (!clickedInsideNavbar) {
