@@ -17,44 +17,31 @@ import { MostWantedCategoriesComponent } from "../../../products/components/most
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit{
+
+  category: string = '';
+  products: Product[] = [];
+  productCategories: ProductCategory[] = [];
+
+  productService = inject(ProductService);
+
   ngOnInit(): void {
-    this.getAllProducts()
-    this.getAllProductCategories()
+    this.productService.products$.subscribe((products) => {
+      this.products = products;
+    });
+    this.productService.productCategories$.subscribe((categories) => {
+      this.productCategories = categories;
+    });
   }
-  productService=inject(ProductService)
-  category:string='';
   onCategorySelected(category: string): void {
     this.category = category;
-    this.products=this.products.filter(product => product.productCategory.categoryName === category)
+    this.products = this.products.filter(product => product.productCategory.categoryName === category);
   }
-  products:Product[]=[]
-  productCategories:ProductCategory[]=[]
-
-  getAllProducts(){
-    this.productService.getAllProducts().subscribe({
-      next:(res)=>{
-        this.products=res
-      },
-      error:(err)=>{
-        console.log("Greska prilikom dobijanja svih delova")
-      }
-    })
-  }
-  getAllProductCategories(){
-    this.productService.getAllProductCategories().subscribe({
-      next:(res)=>{
-        this.productCategories=res
-      },
-      error:(err)=>{
-        console.log("Greska prilikom dobijanja svih kategorija")
-      }
-    })
-  }
-
-  getMostWantedCategories():ProductCategory[]{
+  getMostWantedCategories(): ProductCategory[] {
     const terms = ["Elektronika", "Racunarska oprema", "Bela tehnika"];
-    return this.productCategories.filter(c=>terms.some(term => c.categoryName.includes(term)))
+    return this.productCategories.filter(c => terms.some(term => c.categoryName.includes(term)));
   }
+
+
 
 
 

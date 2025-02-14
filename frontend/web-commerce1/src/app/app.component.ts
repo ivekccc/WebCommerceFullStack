@@ -8,7 +8,7 @@ import { UsersModule } from './features/users/users.module';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,SharedModule,CoreModule,HomeModule,ProductsModule,UsersModule],
+  imports: [RouterOutlet, SharedModule, CoreModule, HomeModule, ProductsModule, UsersModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
