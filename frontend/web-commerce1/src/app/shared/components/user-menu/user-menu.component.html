@@ -1,0 +1,34 @@
+<div class="relative">
+    <a *ngIf="currentUser; else loginLink" class="flex items-center gap-x-2 text-white hover:text-gray-300 cursor-pointer" (click)="toggleMenu($event)">
+      <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <span>{{ currentUser.firstName }}</span>
+    </a>
+    <ng-template #loginLink>
+      <a class="flex items-center gap-x-2 text-white hover:text-gray-300 cursor-pointer" routerLink="/auth/login">
+        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span>Prijavi se</span>
+      </a>
+    </ng-template>
+    <div *ngIf="showMenu && currentUser" class="absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded-md shadow-lg z-20">
+      <ul>
+        <li class="group relative px-4 py-2 text-white cursor-pointer hover:bg-gray-700 rounded-lg transition-colors" routerLink="/lista-zelja">
+          Moj Profil
+        </li>
+        <li class="group relative px-4 py-2 text-white cursor-pointer hover:bg-gray-700 rounded-lg transition-colors" routerLink="/lista-zelja">
+          Istorija kupovine
+        </li>
+        <li class="group relative px-4 py-2 text-white cursor-pointer hover:bg-gray-700 rounded-lg transition-colors" routerLink="/lista-zelja">
+          List Zelja
+        </li>
+        <li class="group relative px-4 py-2 text-white cursor-pointer hover:bg-gray-700 rounded-lg transition-colors" (click)="logoutUser()">
+          Odjava
+        </li>
+      </ul>
+    </div>
+  </div>
