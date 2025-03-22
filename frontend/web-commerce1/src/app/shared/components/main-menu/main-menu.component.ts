@@ -12,6 +12,9 @@ import { Router, RouterLink } from '@angular/router';
 export class MainMenuComponent {
   @Input() categories: ProductCategory[] = [];
 
+  // Add a property to track main menu visibility
+isMainMenuOpen: boolean = true;
+
   // Niz koji čuva trenutno aktivnu kategoriju za svaki nivo menija.
   activeMenuPath: ProductCategory[] = [];
 
@@ -29,11 +32,21 @@ export class MainMenuComponent {
 
   constructor(private router: Router) {}
 
-  goToCategory(categoryId: number): void {
-    console.log("Navigating to category with ID:", categoryId);
-    this.router.navigate([`/category/${categoryId}`]);
-}
 
+goToCategory(category: ProductCategory): void {
+  console.log("Navigating to category:", category.id);
+  // First, reset the active menu path to close all submenus
+  this.activeMenuPath = [];
+  // Close the main menu
+  this.isMainMenuOpen = false;
+  // Use setTimeout to ensure DOM updates before navigation
+  setTimeout(() => {
+    this.router.navigate([`/category/${category.id}`], { state: { category } });
+    // You might want to reopen the menu after navigation completes
+    // depending on your UX requirements
+    // this.isMainMenuOpen = true;
+  }, 10);
+}
   onMenuEnter(category: ProductCategory, level: number): void {
     // Postavljamo kategoriju kao aktivnu za dati nivo, a zatim brišemo sve dublje nivoe.
     this.activeMenuPath[level] = category;
@@ -48,12 +61,5 @@ export class MainMenuComponent {
     }
   }
 
-  showRoute(category: ProductCategory | null): void {
-    let route: string[] = [];
-    while (category != null) {
-      route.unshift(category.categoryName);
-      category = category?.superiorCategory || null;
-    }
-    const fullRoute = route.join(' > ');
-  }
+
 }

@@ -45,5 +45,14 @@ export class ProductService {
       }
     });
   }
+  showRoute(category: ProductCategory | null): string {
+    let route: string[] = [];
+    while (category != null) {
+      route.unshift(category.categoryName);
+      category = category?.superiorCategory || null;
+    }
+    const fullRoute = route.join(' > ');
+    return fullRoute
+  }
 
 }

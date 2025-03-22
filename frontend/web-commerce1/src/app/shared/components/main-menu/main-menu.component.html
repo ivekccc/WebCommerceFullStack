@@ -1,4 +1,5 @@
-<div class="min-w-[200px] bg-gray-800 shadow-xl rounded-lg">
+<!-- Wrap the entire menu in an *ngIf -->
+<div *ngIf="isMainMenuOpen" class="min-w-[200px] bg-gray-800 shadow-xl rounded-lg">
   <ul class="flex flex-col p-2">
     <!-- Početni nivo – glavni meniji -->
     <ng-container *ngTemplateOutlet="recursiveMenu; context:{ items: getSuperCategories(), level: 0 }"></ng-container>
@@ -11,7 +12,7 @@
     <li class="group relative px-4 py-2 text-white hover:bg-gray-700 rounded-lg cursor-pointer transition-colors"
         (mouseenter)="onMenuEnter(category, level)"
         (mouseleave)="onMenuLeave(category, level)"
-        (click)="goToCategory(category.id); $event.stopPropagation()">
+        (click)="goToCategory(category); $event.stopPropagation()">
       <div class="flex justify-between items-center">
         <span>{{ category.categoryName }}</span>
         <svg *ngIf="hasSubcategories(category)" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
