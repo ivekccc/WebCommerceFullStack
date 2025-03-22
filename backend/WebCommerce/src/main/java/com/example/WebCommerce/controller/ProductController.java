@@ -4,9 +4,7 @@ import com.example.WebCommerce.model.product.Product;
 import com.example.WebCommerce.model.productCategory.ProductCategory;
 import com.example.WebCommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +16,7 @@ public class ProductController {
     ProductService productService;
 
 
+
     //PRODUCT CLASS CONTROLLER
 
     @GetMapping("/getAllProducts")
@@ -25,6 +24,12 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/category/{categoryId}")
+    public List<Product> getProductsByCategory(@PathVariable int categoryId) {
+        List<Product> lista=productService.getProductsByCategory(categoryId);
+        System.out.println(lista);
+        return lista;
+    }
     //PRODUCT CATEGORY CLASS CONTROLLER
 
     @GetMapping("/getAllCategories")
