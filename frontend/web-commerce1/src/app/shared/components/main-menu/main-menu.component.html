@@ -11,7 +11,7 @@
     <li class="group relative px-4 py-2 text-white hover:bg-gray-700 rounded-lg cursor-pointer transition-colors"
         (mouseenter)="onMenuEnter(category, level)"
         (mouseleave)="onMenuLeave(category, level)"
-        (click)="showRoute(category); $event.stopPropagation()">
+        (click)="goToCategory(category.id); $event.stopPropagation()">
       <div class="flex justify-between items-center">
         <span>{{ category.categoryName }}</span>
         <svg *ngIf="hasSubcategories(category)" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

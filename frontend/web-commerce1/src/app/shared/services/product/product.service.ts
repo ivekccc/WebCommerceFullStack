@@ -19,6 +19,11 @@ export class ProductService {
     this.loadProducts();
     this.loadProductCategories();
   }
+
+  getProductsByCategory(categoryId: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`http://localhost:9090/api/products/category/${categoryId}`);
+  }
+
   private loadProducts(): void {
     this.http.get<Product[]>("http://localhost:9090/api/products/getAllProducts").subscribe({
       next: (res) => {

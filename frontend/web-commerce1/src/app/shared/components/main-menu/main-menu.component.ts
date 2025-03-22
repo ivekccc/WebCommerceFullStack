@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ProductCategory } from '../../model/product';
 import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-main-menu',
@@ -26,6 +27,13 @@ export class MainMenuComponent {
     return this.categories.filter(c => c.superiorCategory?.id === category.id);
   }
 
+  constructor(private router: Router) {}
+
+  goToCategory(categoryId: number): void {
+    console.log("Navigating to category with ID:", categoryId);
+    this.router.navigate([`/category/${categoryId}`]);
+}
+
   onMenuEnter(category: ProductCategory, level: number): void {
     // Postavljamo kategoriju kao aktivnu za dati nivo, a zatim brišemo sve dublje nivoe.
     this.activeMenuPath[level] = category;
@@ -47,6 +55,5 @@ export class MainMenuComponent {
       category = category?.superiorCategory || null;
     }
     const fullRoute = route.join(' > ');
-    console.log(fullRoute);
   }
 }

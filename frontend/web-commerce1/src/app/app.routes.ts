@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './features/home/components/home/home.component';
 import { LayoutComponent } from './shared/components/layout/layout.component';
+import { CategoryProductsComponent } from './features/products/components/category-products/category-products.component';
 
 export const routes: Routes = [
   {
@@ -14,7 +15,12 @@ export const routes: Routes = [
       {
         path:"",
         component:HomeComponent
+      },
+      {
+        path:"category/:id",
+        component:CategoryProductsComponent
       }
+
     ]
   },
   {
